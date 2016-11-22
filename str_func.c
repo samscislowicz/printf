@@ -1,17 +1,6 @@
 #include "holberton.h"
 
 /**
- * _putchar - writes character to stdout
- * @c: character to print
- *
- * Return: write
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-/**
  * _printstring - print string using _putchar
  * @string: string to print
  *
