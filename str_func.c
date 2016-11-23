@@ -37,7 +37,6 @@ int print_string(va_list *arg)
  **/
 int print_rstring(va_list *arg)
 {
-	unsigned int i;
 	char *s;
 
 	s = va_arg(arg, char *);
