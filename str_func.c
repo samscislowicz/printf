@@ -12,13 +12,15 @@ int print_char(va_list *i)
 
 /**
  * print_string - print string
- * @ap: va_list str
+ * @s: va_list str
  * Return: i
  **/
-int print_string(va_list*arg)
+int print_string(va_list *arg)
 {
 	unsigned int i;
+	char *s;
 
+	s = va_arg(arg, char *);
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		_putchar(s[i]);
@@ -41,7 +43,7 @@ int print_rev(char *s)
 
 /**
  * print_alpha - print alpha str
- * @ap: va_list object
+ * @arg: va_list object
  * Return: length of str printed
  **/
 int print_alpha(va_list *arg)
@@ -49,7 +51,7 @@ int print_alpha(va_list *arg)
 	int i;
 	char *s;
 
-	s = va_arg(*arg, char *);
+	s = va_arg(arg, char *);
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		if (s[i] < 32 || s[i] >= 127)
