@@ -15,6 +15,7 @@ int print_int(va_list *);
 int print_char(va_list *);
 int print_float(va_list *);
 int print_string(va_list *);
+int print_rstring(va_list *);
 int print_rev(char *s);
 
 /**

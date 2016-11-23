@@ -21,11 +21,27 @@ int print_string(va_list *arg)
 	char *s;
 
 	s = va_arg(arg, char *);
+	if (s == NULL)
+		s = "(null)";
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		_putchar(s[i]);
 	}
 	return (i);
+}
+
+/**
+ * print_rstring - prints reverse string
+ * @arg: va_list str
+ * Return: i
+ **/
+int print_rstring(va_list *arg)
+{
+	unsigned int i;
+	char *s;
+
+	s = va_arg(arg, char *);
+	return (print_rev(s));
 }
 
 /**

@@ -14,7 +14,6 @@ int pull_print(char c, va_list *ap)
 		{'i', print_int},
 		{'c', print_char},
 		{'s', print_string},
-		{'r', print_rstring},
 		{'\0', NULL}
 	};
 
@@ -30,5 +29,6 @@ int pull_print(char c, va_list *ap)
 		_putchar('%');
 		return (1);
 	}
+	
 	return (0);
 }
