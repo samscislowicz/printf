@@ -12,7 +12,7 @@ int print_char(va_list *i)
 
 /**
  * print_string - print string
- * @s: va_list str
+ * @arg: va_list str
  * Return: i
  **/
 int print_string(va_list *arg)
