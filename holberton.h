@@ -7,27 +7,26 @@
 #include <string.h>
 #include <unistd.h>
 
-/* string functions */
-int _strlen(char *s);
-int string_app(char *base, char *str, int location);
-char *_strcat(char *dest, char *src);
-char *_strncpy(char *dest, char *src, int n);
-
-/* math functions */
-int num_app(char *base, int num, int location);
-int _abs(int i);
-int itoa(int num, char s[]);
-
-/* switch function */
-int switchf(const char *format, char *buffer, int i, int n, va_list args, int *size);
-
-/* memory functions */
-void *_calloc(unsigned int nmemb, unsigned int size);
-char *_str_duplicate(char *str);
-
-/* print functions */
-int _putchar(char c);
-int _printstring(char *string);
+int _putchar(char);
+int pull_print(char c, va_list *ap);
 int _printf(const char *format, ...);
+int exponent(int x, int y);
+int print_int(va_list *);
+int print_char(va_list *);
+int print_float(va_list *);
+int print_string(va_list *);
+int print_rev(char *s);
+
+/**
+ * struct func - func object
+ * @letter: func char
+ * @prnt: print function pointer
+ * Descriptions: contains flag letter and corresponding print function
+ **/
+typedef struct func
+{
+	char letter;
+	int (*prnt)(va_list *);
+} find_func;
 
 #endif /* ifndef HOLBERTON */
