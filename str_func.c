@@ -1,7 +1,6 @@
 #include "holberton.h"
 
 /**
-<<<<<<< HEAD
  * print_char - print char
  * @i: va_list char
  * Return: i
@@ -12,24 +11,13 @@ int print_char(va_list *i)
 }
 
 /**
- * print_string - print str
+ * print_string - print string
  * @ap: va_list str
  * Return: i
  **/
-int print_string(va_list *arg)
-=======
- * _printstring - print string using _putchar
- * @string: string to print
- *
- * Return: 1
- */
-int _printstring(char *string)
->>>>>>> master
+int print_string(va_list*arg)
 {
 	unsigned int i;
-	char *s;
-
-	s = va_arg(*arg, char *);
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
