@@ -8,39 +8,25 @@
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int i, n, temp, size;
-	char buffer[1024];
+	va_list arg;
+	unsigned int i, sum;
 
-	if (format == NULL)
-		return (0);
-	size = 0;
-	va_start(args, format);
-	i = n = temp = 0;
-	while (format[i])
+	sum = 0;
+	va_start(arg, format);
+
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		while (format[i] && format[i] != '%')
-		{
-			if (i > 1022)
-			{
-				_printstring(buffer);
-				n = 0;
-				buffer[n + 1] = '\0';
-			}
-			buffer[n] = format[i];
-			i++;
-			n++;
-		}
-		buffer[n] = '\0';
 		if (format[i] == '%')
 		{
+			sum += pull_print(format[i + 1], &arg);
 			i++;
-			temp = switchf(format, buffer, i, n, args, &size);
-			i = temp;
 		}
-		n = _strlen(buffer);
+		else
+		{
+			_putchar(format[i]);
+			sum++;
+		}
 	}
-	va_end(args);
-	_printstring(buffer);
-	return (size + n);
+	va_end(arg);
+	return (sum);
 }

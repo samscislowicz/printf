@@ -1,93 +1,66 @@
 #include "holberton.h"
 
 /**
- * _str_duplicate - create pointer to duplicate of @str
- * @str: string to duplicate
+ * exponent - x to the power of y
+ * @x: base number
+ * @y: exponent
+ * Description: calcuates x^y
+ * Return: x^y
  *
- * Return: pointer
- */
-char *_str_duplicate(char *str)
+ **/
+int exponent(int x, int y)
 {
-	char *s;
-	int i, size;
+	if (y < 0)
+		return (-1);
+	if (y == 0)
+		return (1);
 
-	if (str == NULL)
-		return (NULL);
-	size = _strlen(str);
-	s = malloc((size + 1) * sizeof(*s));
-	if (s == NULL)
-		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		s[i] = str[i];
-		i++;
-	}
-	s[i] = str[i];
-	return (s);
+	return (x * exponent(x, y - 1));
 }
 
-/**
- * _calloc - allocate memory for array using malloc
- * @nmemb: number of elements in the array
- * @size: size of bytes of each element
- *
- * Return: pointer to allocated memory
- */
-void *_calloc(unsigned int nmemb, unsigned int size)
-{
-	char *p;
-	unsigned int i;
 
-	if (nmemb == 0 || size == 0)
-		return (NULL);
-	p = malloc(nmemb * size);
-	if (p == NULL)
-		return (NULL);
-	i = 0;
-	while (i <= (nmemb * size))
+/**
+ * print_int - print an int using only _putchar
+ * @i: va_list containing number
+ *
+ * Return: sum
+ **/
+int print_int(va_list *i)
+{
+	int size, digit, number, sum;
+	long counter, sign;
+
+	number = va_arg(*i, int);
+	sign = 1;
+	digit = 0;
+	size = 1;
+	counter = number;
+	sum = 0;
+
+	if (number < 0)
 	{
-		p[i] = 0;
-		i++;
+		_putchar('-');
+		sign = -1;
+		counter *= sign;
+		sum++;
 	}
-	return (p);
-}
-/**
- * _abs - computes absolute value of an integer
- * @i: interger to computer
- *
- * Return: absolute value;
- */
-int _abs(int i)
-{
-	if (i < 0)
+
+	for (; counter >= 10; size++)
 	{
-		i = i * -1;
-		return (i);
+		counter = counter / 10;
 	}
-	else
-		return (i);
-}
 
-/**
- * itoa - convert integer to string
- * @num: integer to convert
- * @s: array of chars
- *
- * Return: int
- */
-int itoa(int num, char s[])
-{
-	int i;
+	counter = sign * (long)number;
 
-	i = 0;
-	if (num / 10 != 0)
-		i = itoa(num / 10, s);
-	else if (num < 0)
-		s[i++] = '-';
-	/* make sure i is positive */
-	s[i++] = _abs(num % 10) + '0';
-	s[i] = '\0';
-
-	return (i);
+	while (size >= 2)
+	{
+		digit = (counter / exponent(10, size - 1));
+		_putchar(digit + '0');
+		counter = counter % exponent(10, size - 1);
+		size--;
+		sum++;
+	}
+	_putchar(counter % 10 + '0');
+	sum++;
+	return (sum);
 }

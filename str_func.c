@@ -1,94 +1,66 @@
 #include "holberton.h"
 
 /**
- * _putchar - writes character to stdout
- * @c: character to print
- *
- * Return: write
- */
-int _putchar(char c)
+ * print_char - print char
+ * @i: va_list char
+ * Return: i
+ **/
+int print_char(va_list *i)
 {
-	return (write(1, &c, 1));
+	return (_putchar(va_arg(*i, int)));
 }
 
 /**
- * _printstring - print string using _putchar
- * @string: string to print
- *
- * Return: 1
- */
-int _printstring(char *string)
+ * print_string - print str
+ * @ap: va_list str
+ * Return: i
+ **/
+int print_string(va_list *arg)
 {
-	int i;
+	unsigned int i;
+	char *s;
 
-	i = 0;
-	while (string[i])
+	s = va_arg(*arg, char *);
+
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		_putchar(string[i]);
-		i++;
+		_putchar(s[i]);
 	}
-	return (1);
+	return (i);
 }
 
 /**
- * _strlen - find length of string
- * @s: pointer to  string
- *
- * Return: length of s
- */
-int _strlen(char *s)
+ * print_rev - print str in rev
+ * @s: str to rev
+ * Return:  str
+ **/
+int print_rev(char *s)
 {
-	int l;
+	if (s[1] == '\0')
+		return (_putchar(s[0]));
 
-	l = 0;
-	while (s[l])
-		l++;
-	return (l);
+	return (print_rev(&s[1]) + _putchar(s[0]));
 }
 
 /**
- * _strncpy - copy @n bytes of @src to @dest
- * @dest: pointer to destination string
- * @src: pointer to source string
- * @n: bytes to copy
- *
- * Return: pointer to @dest
- */
-char *_strncpy(char *dest, char *src, int n)
+ * print_alpha - print alpha str
+ * @ap: va_list object
+ * Return: length of str printed
+ **/
+int print_alpha(va_list *arg)
 {
 	int i;
+	char *s;
 
-	i = 0;
-	while (i != n)
+	s = va_arg(*arg, char *);
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		dest[i] = src[i];
-		if (src[i] == '\0')
+		if (s[i] < 32 || s[i] >= 127)
 		{
-			while (i != n)
-				dest[i++] = '\0';
-			break;
+
 		}
-		i++;
+		else
+			_putchar(s[i]);
 	}
-	return (dest);
-}
-
-/**
- * _strcat - concatenate two strings
- * @dest: base string
- * @src: string to be added
- *
- * Return: char
- */
-char *_strcat(char *dest, char *src)
-{
-	int i, n;
-
-	i = n = 0;
-	while (dest[i])
-		i++;
-	while (src[n])
-		dest[i++] = src[n++];
-	dest[i] = '\0';
-	return (dest);
+	return (i);
 }
